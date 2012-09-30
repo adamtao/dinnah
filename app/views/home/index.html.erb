@@ -1,4 +1,31 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<h3 style="text-align: center" class="subheader"><%=l @date, format: :weekday %>'s suggested meal is...</h3>
+
+<div class="row">
+	<div class="eight columns offset-by-two end panel callout radius" style="text-align: center">
+	<% if @meals && @meals.size > 0 %>
+		<h1><%= @meals.pop.name %></h1>
+	<% else %>
+		Sorry, I couldn't find one. Maybe you need to 
+		<%= link_to "add some meals.", new_meal_path %>
+	<% end %>
+	</div>
+</div>
+
+<h5 class="subheader">And for the week...</h5>
+
+<div class="row">
+	<% @meals.each_with_index do |meal, i| %>
+	<div class="two columns panel weekday">
+		<h6><%=l (i + 1).days.from_now.to_date, format: :weekday %>
+			<small><%=l (i + 1).days.from_now.to_date, format: :short %></small>
+		</h6>
+		<p><%= meal.name %></p>
+	</div>
+	<% end %>
+</div>
+
+<% if @season %>
+<div style="text-align: center; color: #555;">
+	<small>Chosen from the current season: <%= @season.name %></small>
+</div>
 <% end %>

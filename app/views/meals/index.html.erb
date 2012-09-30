@@ -1,0 +1,9 @@
+<h1>Meals</h1>
+
+<%= link_to "add a new meal", new_meal_path, class: "button" %>
+
+<ul>
+	<% @meals.each do |meal| %>
+	<li><%= link_to meal.name, edit_meal_path(meal) %> <small><%= meal.season %></small></li>
+	<% end %>
+</ul>

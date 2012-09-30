@@ -10,16 +10,37 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container" class="container">
-      <header>
-        <%= render 'layouts/navigation' %>
+    <%= render 'layouts/navigation' %>
+
+  <% if content_for?(:big_banner) %>
+    <!-- First Band (Image) -->
+    <div class="row">
+      <div class="twelve columns">
+        <%= yield :big_banner %>
+      </div>
+    </div>
+  <% end %>
+ 
+  <div class="row">
+      <div class="twelve columns">
         <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
         <%= yield %>
       </div>
-      <footer>
-      </footer>
-    </div> <!--! end of #container -->
+  </div>
+
+  <!-- Footer -->
+  
+  <footer class="row">
+    <div class="twelve columns">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <!-- <p>&copy; </p> -->
+        </div>
+        <div class="six columns">
+        </div>
+      </div>
+    </div> 
+  </footer>
   </body>
 </html>
